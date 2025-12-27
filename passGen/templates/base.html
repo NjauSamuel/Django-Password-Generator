@@ -55,7 +55,10 @@
                     </ul>
                 </div>
                 <hr class="my-6 border-slate-200 sm:mx-auto lg:my-8" />
-                <span class="block text-sm text-gray-700 sm:text-center">© 2025 Password Generator. All Rights Reserved. <span class="text-gray-500">This is a demo project.</span></span>
+                <span class="block text-sm text-gray-700 sm:text-center">© <span id="footer-year"></span> Password Generator. All Rights Reserved.</span>
+                <script>
+                  document.getElementById('footer-year').textContent = new Date().getFullYear();
+                </script>
             </div>
         </footer>
 
