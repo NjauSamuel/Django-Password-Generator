@@ -115,3 +115,14 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite / Frontend build
+static/dist/
+frontend/dist/

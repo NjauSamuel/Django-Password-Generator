@@ -4,7 +4,8 @@ import random
 
 # Create your views here.
 def home(request):
-    return HttpResponse("<h1>Hello, World!</h1><br><br><br>This is the home page.")
+    # return HttpResponse("<h1>Hello, World!</h1><br><br><br>This is the home page.")
+    return render(request, "passGen/home.html")
 
 
 def passGen(request):
@@ -15,4 +16,4 @@ def passGen(request):
     
     context = {"password": password}
     
-    return JsonResponse(context)
+    return render(request, "passGen/passGen.html", context)

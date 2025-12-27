@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-[70vh] bg-gray-100 flex items-center justify-center pt-20">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold underline mb-4">
+            Password Generator
+        </h1>
+        <p class="text-lg mb-4">Your password: <span class="font-mono">{{ password }}</span></p>
+        <button onclick="window.location.reload()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors cursor-pointer">Generate Password</button>
+    </div>
+</div>
+{% endblock %}
