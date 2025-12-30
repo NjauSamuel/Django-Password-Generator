@@ -37,7 +37,10 @@ db.sqlite3
 db.sqlite3-journal
 /media
 /staticfiles
-/static
+# Ignore generated static files but keep source assets
+/static/dist/
+# Allow tracking of source static files (images, logos, etc.)
+!/static/images/
 
 # Environment variables
 .env
