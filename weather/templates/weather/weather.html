@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="bg-gray-50 dark:bg-gray-800 min-h-[80vh] py-12 pt-20">
+    <div class="max-w-4xl mx-auto px-4">
+        <!-- Weather Display Section -->
+        {% if weather %}
+        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700 mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                Weather in {{ weather.city }}, {{ weather.country_code }}
+            </h1>
+            
+            <!-- Main Weather Card -->
+            <div class="bg-linear-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-lg p-8 mb-6 text-white" style="background-image: linear-gradient(to bottom right, #3b82f6, #2563eb);">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-5xl font-bold mb-2">{{ weather.temp }}{{ weather.temp_unit }}</h2>
+                        <p class="text-xl opacity-90">{{ weather.description }}</p>
+                        <p class="text-sm opacity-75 mt-2">Feels like {{ weather.feels_like }}{{ weather.temp_unit }}</p>
+                    </div>
+                    <div class="text-right">
+                        {% if weather.icon %}
+                        <img src="{% static 'images/'|add:weather.icon|add:'@2x.png' %}" alt="{{ weather.description }}" class="w-24 h-24">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Details Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Humidity</p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ weather.humidity }}%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Pressure</p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ weather.pressure }} hPa</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if weather.wind_speed %}
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Wind Speed</p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ weather.wind_speed }} m/s</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if weather.visibility %}
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Visibility</p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ weather.visibility }} km</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Coordinates</p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ weather.coordinate }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Error Message -->
+        {% if error %}
+        <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mb-8">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-red-600 dark:text-red-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <p class="text-red-800 dark:text-red-200 font-medium">{{ error }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Weather Form Section -->
+        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Get Weather Information</h2>
+            <form action="{% url 'weather' %}" method="GET" class="space-y-6">
+                <!-- City Name Input -->
+                <div>
+                    <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        City Name
+                    </label>
+                    <input type="text" name="city" id="city" value="{{ city }}" placeholder="Enter city name (e.g., London, New York)" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+
+                <!-- Units Selection -->
+                <div>
+                    <label for="units" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Temperature Units
+                    </label>
+                    <select name="units" id="units" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="metric" {% if units == 'metric' or not units %}selected{% endif %}>Celsius (°C)</option>
+                        <option value="imperial" {% if units == 'imperial' %}selected{% endif %}>Fahrenheit (°F)</option>
+                        <option value="kelvin" {% if units == 'kelvin' %}selected{% endif %}>Kelvin (K)</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-colors">
+                    Get Weather
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

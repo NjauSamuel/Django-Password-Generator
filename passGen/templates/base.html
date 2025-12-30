@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Password Generator{% endblock %}</title>
+        <title>{% block title %}Django Tools{% endblock %}</title>
         {% load static %}
         <link href="{% static 'dist/assets/index.css' %}" rel="stylesheet">
     </head>
@@ -15,7 +15,7 @@
             <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{% url 'home' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{% static 'images/keyforge.png' %}" class="h-7" alt="KeyForge Logo" />
-                <span class="self-center text-xl text-gray-900 font-semibold whitespace-nowrap">Password Generator</span>
+                <span class="self-center text-xl text-gray-900 font-semibold whitespace-nowrap">Django Tools</span>
             </a>
             <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-700 rounded-base md:hidden hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-slate-300" aria-controls="navbar-default" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
@@ -30,6 +30,9 @@
                 <li>
                     <a href="{% url 'passGen' %}" class="block py-2 px-3 {% if request.resolver_match.url_name == 'passGen' %}text-blue-600 bg-blue-50 rounded md:bg-transparent md:text-blue-600{% else %}text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600{% endif %} md:p-0 {% if request.resolver_match.url_name == 'passGen' %}aria-current="page"{% endif %}">Generate Password</a>
                 </li>
+                <li>
+                    <a href="{% url 'weather' %}" class="block py-2 px-3 {% if request.resolver_match.url_name == 'weather' %}text-blue-600 bg-blue-50 rounded md:bg-transparent md:text-blue-600{% else %}text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600{% endif %} md:p-0 {% if request.resolver_match.url_name == 'weather' %}aria-current="page"{% endif %}">Weather</a>
+                </li>
                 {% endblock %}
                 </ul>
             </div>
@@ -38,12 +41,12 @@
   
         {% block content %}{% endblock %}
 
-        <footer class="{% if request.resolver_match.url_name == 'passGen' %}bg-gray-100{% else %}bg-white{% endif %} rounded-base shadow-lg border border-slate-300 m-4">
+        <footer class="{% if request.resolver_match.url_name == 'passGen' or request.resolver_match.url_name == 'weather' %}bg-gray-100{% else %}bg-white{% endif %} rounded-base shadow-lg border border-slate-300 m-4">
             <div class="w-full max-w-7xl mx-auto p-4 md:py-8">
                 <div class="sm:flex sm:items-center sm:justify-between">
                     <a href="{% url 'home' %}" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                         <img src="{% static 'images/keyforge.png' %}" class="h-7" alt="KeyForge Logo" />
-                        <span class="text-gray-900 self-center text-2xl font-semibold whitespace-nowrap">Password Generator</span>
+                        <span class="text-gray-900 self-center text-2xl font-semibold whitespace-nowrap">Django Tools</span>
                     </a>
                     <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-700 sm:mb-0">
                         <li>
@@ -55,7 +58,7 @@
                     </ul>
                 </div>
                 <hr class="my-6 border-slate-200 sm:mx-auto lg:my-8" />
-                <span class="block text-sm text-gray-700 sm:text-center">© <span id="footer-year"></span> Password Generator. All Rights Reserved.</span>
+                <span class="block text-sm text-gray-700 sm:text-center">© <span id="footer-year"></span> Django Tools. All Rights Reserved.</span>
                 <script>
                   document.getElementById('footer-year').textContent = new Date().getFullYear();
                 </script>

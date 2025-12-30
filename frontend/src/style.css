@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @source "../../passGen/templates/**/*.html";
+@source "../../weather/templates/**/*.html";
 
 @theme {
   --color-primary-50: #eff6ff;
