@@ -16,20 +16,7 @@ jobs:
         with:
           fetch-depth: 2
 
-      # Step 2: Set up Python (Django backend)
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11' # Match your cPanel Python version
-
-      # Step 3: Collect static files for Django
-      - name: Collect Static Files
-        run: |
-          python manage.py collectstatic --noinput
-        env:
-          DJANGO_SETTINGS_MODULE: mysite.settings
-
-      # Step 4: Set up Node.js and build assets (frontend)
+      # Step 2: Set up Node.js and build assets (frontend)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -41,7 +28,7 @@ jobs:
       - name: Build Assets
         run: npm run build
 
-      # Step 5: Deploy to cPanel using FTP
+      # Step 3: Deploy to cPanel using FTP
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
